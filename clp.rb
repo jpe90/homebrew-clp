@@ -4,8 +4,8 @@
 class Clp < Formula
   desc "command line syntax highlighter"
   homepage "https://github.com/jpe90/clp"
-  url "https://github.com/jpe90/clp/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "4f0d189f350c9cb5ba3009dae005aadd95b34c7e0e4a77ffea812c246ea47b7d"
+  url "https://github.com/jpe90/clp/archive/refs/tags/v0.1.1.tar.gz"
+  sha256 "c168932ae5e41bc6972f5008192b407f7341bdb15741d6d3ef9418ae06133125"
   license "MIT"
 
   # depends_on "cmake" => :build
