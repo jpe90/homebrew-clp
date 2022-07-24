@@ -1,14 +1,10 @@
-# Documentation: https://docs.brew.sh/Formula-Cookbook
-#                https://rubydoc.brew.sh/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class Clp < Formula
   desc "command line syntax highlighter"
   homepage "https://github.com/jpe90/clp"
-  url "https://github.com/jpe90/clp/archive/refs/tags/v0.1.1.tar.gz"
-  sha256 "c168932ae5e41bc6972f5008192b407f7341bdb15741d6d3ef9418ae06133125"
+  url "https://github.com/jpe90/clp/archive/refs/tags/v0.1.2.tar.gz"
+  sha256 "9fa537da95d79fc22a0533ea4bc81affce8332725ddab34df0f031398a4bc0d8"
   license "MIT"
 
-  # depends_on "cmake" => :build
   depends_on "luarocks" => :build
   depends_on "pkg-config" => :build
   depends_on "luajit"
@@ -25,34 +21,12 @@ class Clp < Formula
     lua_path = "--lua-dir=#{Formula["luajit"].opt_prefix}"
 
 	resource("lpeg").stage do
-      # system "luarocks" "--lua-dir=$(brew --prefix)/opt/lua@5.1", "build", "lpeg", "--tree=#{luapath}"
       system "luarocks", "build", "lpeg", lua_path, "--tree=#{luapath}"
     end
 
-    # The path separator for `LUA_PATH` and `LUA_CPATH` is `;`.
-    # ENV.prepend "LUA_PATH", buildpath/"deps-build/share/lua/5.1/?.lua", ";"
-    # ENV.prepend "LUA_CPATH", buildpath/"deps-build/lib/lua/5.1/?.so", ";"
-    # Don't clobber the default search path
-    # ENV.append "LUA_PATH", ";", ";"
-    # ENV.append "LUA_CPATH", ";", ";"
-    # luapath = "--lua-dir=#{Formula["luajit"].opt_prefix}"
     system "./configure", "--prefix=#{prefix}"
     system "make", "install"
 	luaenv = { LUA_PATH: ENV["LUA_PATH"], LUA_CPATH: ENV["LUA_CPATH"] }
     bin.env_script_all_files(libexec/"bin", luaenv)
-    # system "cmake", "-S", ".", "-B", "build", *std_cmake_args
-  end
-
-  test do
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # This test will fail and we won't accept that! For Homebrew/homebrew-core
-    # this will need to be a test that verifies the functionality of the
-    # software. Run the test with `brew test clp`. Options passed
-    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "false"
   end
 end
