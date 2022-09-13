@@ -1,8 +1,8 @@
 class Clp < Formula
   desc "command line syntax highlighter"
   homepage "https://github.com/jpe90/clp"
-  url "https://github.com/jpe90/clp/archive/refs/tags/v0.2.1.tar.gz"
-  sha256 "17b73bd14ec4eb3832bfe892bb7b598abc549759a192354e222440e8820769fb"
+  url "https://github.com/jpe90/clp/archive/refs/tags/v0.2.2.tar.gz"
+  sha256 "a26ec82dbde3c2a4053a76b3ba998c3b558f619c28a63b90bea235c994e47a2f"
   license "MIT"
 
   depends_on "luarocks" => :build
